@@ -1,24 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import AddItem from './components/AddItem';
+import ItemList from './components/ItemList';
+
+const categories = ["מוצרי ניקיון", "גבינות", "ירקות ופירות", "בשר ודגים", "מאפים"]
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>רשימת קניות</h1>
+      <AddItem />
+      <h3>יש לאסוף מוצרים אלו במחלקות המתאימות</h3>
+      {categories.map((category, index)=><ItemList category={category}/>)}
     </div>
   );
 }

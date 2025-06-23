@@ -1,0 +1,18 @@
+.AddItem {
+    width: 80%;
+    margin: auto;
+     display: flex;
+    flex-direction: row;
+    
+}
+
+.name {
+    width: 30%;
+
+}
+
+.formStyle{
+    display: flex;
+    flex-direction: row;
+
+}
