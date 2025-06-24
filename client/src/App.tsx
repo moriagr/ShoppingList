@@ -4,6 +4,7 @@ import AddItem from './components/AddItem';
 import AllProducts from './components/allProducts';
 import { fetchCategories } from './api/service';
 import { useAppDispatch } from './store/hooks';
+import SaveShoppingListButton from './components/saveShoppingList';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <h1>רשימת קניות</h1>
       <AddItem />
       <AllProducts />
+      <SaveShoppingListButton />
     </div>
   );
 }

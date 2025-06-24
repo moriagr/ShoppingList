@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Category, initialStateCategoriesType } from './interfaces';
+import { Category, initialStateCategoriesType } from '../interface/interfaces';
 import { fetchCategories } from '../api/service';
 
 

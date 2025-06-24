@@ -1,22 +1,24 @@
 export interface ShoppingItem {
-    _id: number;
     name: string;
-    category: number;
-    quantity: number;
+    category: string;
 }
 
 export interface Category {
-    _id: number;
+    _id: string;
     name: string;
 }
 
 export interface ShoppingListInterface {
-    items: ShoppingItem[];
-    createdAt: Date;
+    [categoryId: string]: {
+        amount: number;
+        items: { [name: string]: number };
+    }
 }
 
 export interface initialStateShoppingType {
-    shoppingList: ShoppingItem[];
+    shoppingList: ShoppingListInterface;
+    loading: boolean;
+    error: null | string;
 }
 
 export interface initialStateCategoriesType {

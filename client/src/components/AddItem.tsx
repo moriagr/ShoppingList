@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FormControl, MenuItem, Select, TextField, InputLabel } from '@mui/material';
 import { Button } from '@mui/joy';
-
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 import './items.style.css'
-import { useAppSelector } from '../store/hooks';
+import { addNewItem } from '../store/shoppingSlice';
 
 function AddItem() {
 
     const [productName, setProductName] = useState<string>("");
-    const [category, setCategory] = useState<number | "">("");
+    const [category, setCategory] = useState<string | "">("");
     const stateCategories = useAppSelector(state => state.categories);
     const { loading, categories } = stateCategories;
+    const dispatch = useAppDispatch();
 
     const onSubmit = () => {
         console.log(productName);
-        console.log(category);
+        console.log(typeof category);
+        dispatch(addNewItem({ category: category, name: productName }))
     }
 
 
@@ -37,7 +39,7 @@ function AddItem() {
                         label="קטגוריה"
                         sx={{ minWidth: 80 }}
                         value={category}
-                        onChange={(e) => setCategory(e.target.value as number)}
+                        onChange={(e) => setCategory(e.target.value)}
                     >
                         {categories.map((category) => (
 

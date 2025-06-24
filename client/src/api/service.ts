@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Axios from './axiosInstance';
-import { item } from './itemInterface';
+import { ItemInterface } from '../interface/itemInterface';
 
 export const fetchCategories = createAsyncThunk(
     '/categories/fetchCategories', async () => {
@@ -10,8 +10,8 @@ export const fetchCategories = createAsyncThunk(
 );
 
 export const saveShoppingList = createAsyncThunk(
-    '', async (items: item[]) => {
-        const response = await Axios.post('/categories', { items });
+    '/shopping-list/saveShoppingList', async (items: ItemInterface[]) => {
+        const response = await Axios.post('/shopping-list', { items });
         return response.data;
     }
 );
