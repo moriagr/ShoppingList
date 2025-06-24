@@ -1,18 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
 import AddItem from './components/AddItem';
-import ItemList from './components/ItemList';
+import AllProducts from './components/allProducts';
+import { fetchCategories } from './api/service';
+import { useAppDispatch } from './store/hooks';
 
-const categories = ["מוצרי ניקיון", "גבינות", "ירקות ופירות", "בשר ודגים", "מאפים"]
 
 function App() {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch])
+
   return (
     <div className="App">
       <h1>רשימת קניות</h1>
       <AddItem />
-      <h3>יש לאסוף מוצרים אלו במחלקות המתאימות</h3>
-      {categories.map((category, index)=><ItemList category={category}/>)}
+      <AllProducts />
     </div>
   );
 }
