@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { FormControl, MenuItem, TextField, CircularProgress, Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import './AddItem.style.css'
+import './styles.css'
 import { addNewItem } from '../../store/shoppingSlice';
-import { inputStyle } from './addItem.style'
-import CustomButton from '../button/customButton';
+import { inputStyle } from './styles'
+import CustomButton from '../button/CustomButton';
 
 interface errorInterface {
     productErr: string,
@@ -21,20 +21,22 @@ function AddItem() {
 
     const dispatch = useAppDispatch();
 
+    const validate = (): boolean => {
+        const productErr = productName.trim() === "" ? "לא בחרת שום מוצר עדיין, נסה שוב" : "";
+        const categoryErr = category === "" ? "לא בחרת שום קטגוריה עדיין, נסה שוב" : "";
+
+        setError({ productErr, categoryErr });
+
+        return !(productErr || categoryErr);
+    };
+
     const onSubmit = () => {
-        if (productName === "" || category === "") {
-            if (productName === "" && category === "") {
-                setError({ productErr: "   לא בחרת שום מוצר עדיין, נסה שוב", categoryErr: "   לא בחרת שום קטגורייה עדיין, נסה שוב" });
-            }
-            else if (productName === "")
-                setError({ productErr: "   לא בחרת שום מוצר עדיין, נסה שוב", categoryErr: "" });
-            else {
-                setError({ productErr: "", categoryErr: "   לא בחרת שום קטגורייה עדיין, נסה שוב" });
-            }
-            return;
-        }
+        if (!validate()) return;
         dispatch(addNewItem({ category: category, name: productName }))
     }
+
+    const clearError = (key: keyof errorInterface) =>
+        setError((prev) => ({ ...prev, [key]: "" }));
 
     return (
         <div className="AddItem">
@@ -48,7 +50,7 @@ function AddItem() {
                     sx={inputStyle}
                     onChange={(event) => {
                         setProductName(event.target.value)
-                        setError((prevValue) => { return { ...prevValue, productErr: "" } })
+                        clearError("productErr")
                     }}
                     fullWidth
                 />
@@ -66,7 +68,7 @@ function AddItem() {
                         value={category}
                         onChange={(e) => {
                             setCategory(e.target.value)
-                            setError((prevValue) => { return { ...prevValue, categoryErr: "" } })
+                            clearError("categoryErr")
                         }}
                     >
                         {categories.map((category) => (

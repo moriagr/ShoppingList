@@ -5,18 +5,17 @@ import CloseIcon from '@mui/icons-material/Close';
 import './card.style.css';
 import { useDispatch } from 'react-redux';
 import { updateItem } from '../../store/shoppingSlice';
+import { CardItemsProps } from './Card.types';
 
-interface itemsInterface {
-    itemsInCategory: { [name: string]: number };
-    category: string
-}
 
-const CardItems = ({ itemsInCategory, category }: itemsInterface) => {
+const CardItems = ({ itemsInCategory, category }: CardItemsProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const maxVisibleItems = 3;
-    const visibleItems = isExpanded ? Object.keys(itemsInCategory) : Object.keys(itemsInCategory).slice(0, maxVisibleItems);
-    const hasMoreItems = Object.keys(itemsInCategory).length > maxVisibleItems;
+    const itemKeys = Object.keys(itemsInCategory);
+
+    const visibleItems = isExpanded ? itemKeys : itemKeys.slice(0, maxVisibleItems);
+    const hasMoreItems = itemKeys.length > maxVisibleItems;
     const dispatch = useDispatch();
 
     const deleteItem = (itemId: string) => {
@@ -25,8 +24,6 @@ const CardItems = ({ itemsInCategory, category }: itemsInterface) => {
 
     return (
         <div>
-
-            {/* Items list */}
             <div className={!isExpanded && hasMoreItems ? "itemListContainer" : ""}>
 
                 {visibleItems.map((item, index) => (
@@ -34,14 +31,12 @@ const CardItems = ({ itemsInCategory, category }: itemsInterface) => {
                         <span className='item'>
                             {item}
                             {itemsInCategory[item] > 1 && (
-                                <span className="times">
-                                    x{itemsInCategory[item]}
-                                </span>
+                                <span className="times">x{itemsInCategory[item]}</span>
                             )}
 
                         </span>
                         <button className="delete-btn" onClick={() => deleteItem(item)}                        >
-                            <CloseIcon className="w-4 h-4" />
+                            <CloseIcon sx={{ fontSize: 30 }} />
                         </button>
                     </div>
                 ))}
@@ -51,12 +46,12 @@ const CardItems = ({ itemsInCategory, category }: itemsInterface) => {
                 <button onClick={() => setIsExpanded(!isExpanded)} className="buttonHasMore">
                     {isExpanded ? (
                         <>
-                            <ExpandLessIcon style={{ width: '16px', height: '16px' }} />
+                            <ExpandLessIcon style={{ width: 16, height: 16 }} />
                             הראה פחות
                         </>
                     ) : (
                         <>
-                            <ExpandMoreIcon style={{ width: '16px', height: '16px' }} />
+                            <ExpandMoreIcon style={{ width: 16, height: 16 }} />
                             הראה {Object.keys(itemsInCategory).length - maxVisibleItems} מוצרים יותר
                         </>
                     )}

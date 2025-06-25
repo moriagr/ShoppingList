@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { initialStateShoppingType, ShoppingItem } from '../interface/interfaces';
 import { saveShoppingList } from '../api/service';
+import { initialStateShoppingType, ShoppingItem } from '../types';
 
 
 const shoppingList = {};
@@ -45,8 +45,8 @@ const shoppingSlice = createSlice({
                 delete state.shoppingList[action.payload.category]
             } else delete state.shoppingList[action.payload.category].items[action.payload.name];
         },
-        updateError: (state) => {
-            state.error = null;
+        updateError: (state, action: PayloadAction<string | null>) => {
+            state.error = action.payload;
         },
         updateSuccess: (state) => {
             state.success = null;

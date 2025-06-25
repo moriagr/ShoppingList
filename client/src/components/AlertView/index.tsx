@@ -42,7 +42,7 @@ function AlertView() {
 
 
     function handleClose() {
-        if (shoppingErr) dispatch(updateErrorShopping());
+        if (shoppingErr) dispatch(updateErrorShopping(null));
         if (categoriesErr) dispatch(updateError());
         if (shoppingSuccess) dispatch(updateSuccess());
         setMessage(originalValue);

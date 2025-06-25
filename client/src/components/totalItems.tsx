@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import './items.style.css'
+import './components.style.css'
 import { RootState } from '../store';
 
 function TotalItems() {

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Axios from './axiosInstance';
-import { ItemInterface } from '../interface/itemInterface';
+import { ItemInterface } from '../types';
 
 export const fetchCategories = createAsyncThunk(
     '/categories/fetchCategories', async () => {

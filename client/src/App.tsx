@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import './App.css';
-import AddItem from './components/AddItem/AddItem';
+import AddItem from './components/AddItem';
 import AllProducts from './components/allProducts';
 import { fetchCategories } from './api/service';
 import { useAppDispatch } from './store/hooks';
 import SaveShoppingListButton from './components/button/saveShoppingList';
 import TotalItems from './components/totalItems';
-import AlertView from './components/AlertView/AlertView';
+import AlertView from './components/AlertView';
 
 
 function App() {

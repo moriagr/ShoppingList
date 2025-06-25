@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Category, initialStateCategoriesType } from '../interface/interfaces';
 import { fetchCategories } from '../api/service';
+import { Category, initialStateCategoriesType } from '../types';
 
 
 const categories: Category[] = [];
