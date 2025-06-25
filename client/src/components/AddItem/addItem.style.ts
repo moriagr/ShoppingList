@@ -1,26 +1,59 @@
-import { CSSProperties } from "@mui/material";
+import { SxProps, Theme } from '@mui/material';
 
-export const inputStyle: CSSProperties = {
+
+// Stable RTL input styling that works across environments
+export const inputStyle: SxProps<Theme> = {
+    // Input Label positioning for RTL
     '& .MuiInputLabel-root': {
-        right: '14px',
-        top: '50%',
-        transform: 'translateY(-50%)',
+        right: 28,
+        left: 'auto',
         transformOrigin: 'top right',
         textAlign: 'right',
         direction: 'rtl',
+        // When focused or shrunk
+        '&.MuiInputLabel-shrink': {
+            transform: 'translate(-14px, -9px) scale(0.75)',
+            right: 0,
+        },
+        '&.Mui-focused': {
+            transform: 'translate(-14px, -9px) scale(0.75)',
+            right: 0,
+        },
     },
-    '& .MuiInputLabel-root.Mui-focused, & .MuiInputLabel-root.MuiInputLabel-shrink': {
-        right: 0,
-        top: 0,
-        transform: 'translate(-14px, -9px) scale(0.75)'
-    },
-    '& .css-1ll44ll-MuiOutlinedInput-notchedOutline': {
-        textAlign: 'right'
-    },
-    '& .css-lohd6h-MuiSvgIcon-root-MuiSelect-icon, & .css-d551zc-MuiSvgIcon-root-MuiSelect-icon': {
-        left: '7px',
-        right: 'unset',
-        position: 'relative'
 
-    }
+    // TextField input styling
+    '& .MuiOutlinedInput-root': {
+        '& input': {
+            textAlign: 'right',
+            direction: 'rtl',
+        },
+        // Outline border
+        '& .MuiOutlinedInput-notchedOutline': {
+            textAlign: 'right',
+        },
+    },
+
+    // Select component styling
+    '& .MuiSelect-select': {
+        textAlign: 'right',
+        direction: 'rtl',
+    },
+
+    // Select dropdown icon positioning
+    '& .MuiSelect-icon': {
+        left: 7,
+        right: 'auto',
+    },
+
+    // Input adornments
+    '& .MuiInputAdornment-root': {
+        '&.MuiInputAdornment-positionStart': {
+            marginRight: 0,
+            marginLeft: 8,
+        },
+        '&.MuiInputAdornment-positionEnd': {
+            marginLeft: 0,
+            marginRight: 8,
+        },
+    },
 };
