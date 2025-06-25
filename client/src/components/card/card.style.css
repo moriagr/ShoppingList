@@ -13,20 +13,69 @@
     transition: color 0.2s ease;
 }
 
+.itemListContainer {
+    max-height: 256px;
+    overflow-y: auto;
+}
+
+.item {
+    flex: 1;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.times {
+    padding: 2px 8px;
+    background-color: #dbeafe;
+    color: #1e40af;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 9999px;
+}
+
+.buttonHasMore {
+    width: 100%;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #2563eb;
+    background-color: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+}
+
+.itemContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    margin-bottom: 8px;
+}
+
 .Card {
     background-color: white;
     border-radius: 12px;
     margin: auto;
-    /* width: 50%; */
+    width: 85%;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     border: 1px solid #e5e7eb;
-    padding: 24px;
+    padding: 24px 0;
     transition: all 0.3s ease;
     transform: translateY(0);
 }
 
 @media (max-width: 50em) or (orientation: portrait) {
     .Card {
-        width: 50%;
+        width: 84%;
     }
 }

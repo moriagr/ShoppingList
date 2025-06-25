@@ -24,48 +24,17 @@ const CardItems = ({ itemsInCategory }: itemsInterface) => {
     // };
 
     return (
-        <div style={{
-           
-        }}>
+        <div>
 
             {/* Items list */}
-            <div style={{
-                ...(!isExpanded && hasMoreItems ? {
-                    maxHeight: '256px',
-                    overflowY: 'auto'
-                } : {})
-            }}>
+            <div className={!isExpanded && hasMoreItems ? "itemListContainer" : ""}>
+
                 {visibleItems.map((item, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '12px',
-                            padding: '8px',
-                            borderRadius: '8px',
-                            transition: 'background-color 0.2s ease',
-                            marginBottom: '8px'
-                        }}>
-
-
-                        <span style={{
-                            flex: 1,
-                            color: '#1f2937',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px'
-                        }}>
+                    <div key={index} className="itemContainer">
+                        <span className='item'>
                             {item}
                             {itemsInCategory[item] > 1 && (
-                                <span style={{
-                                    padding: '2px 8px',
-                                    backgroundColor: '#dbeafe',
-                                    color: '#1e40af',
-                                    fontSize: '12px',
-                                    fontWeight: '600',
-                                    borderRadius: '9999px'
-                                }}>
+                                <span className="times">
                                     x{itemsInCategory[item]}
                                 </span>
                             )}
@@ -94,23 +63,7 @@ const CardItems = ({ itemsInCategory }: itemsInterface) => {
             </div>
 
             {hasMoreItems && (
-                <button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    style={{
-                        width: '100%',
-                        marginTop: '16px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '8px',
-                        color: '#2563eb',
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        padding: '8px',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease'
-                    }}>
+                <button onClick={() => setIsExpanded(!isExpanded)} className="buttonHasMore">
                     {isExpanded ? (
                         <>
                             <ExpandLessIcon style={{ width: '16px', height: '16px' }} />

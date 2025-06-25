@@ -18,7 +18,7 @@ const shoppingSlice = createSlice({
     reducers: {
         addNewItem: (state, action: PayloadAction<ShoppingItem>) => {
             const item = action.payload;
-            const itemName = item.name;
+            const itemName = item.name.trimEnd();
             const categoryId = item.category;
             if (!(categoryId in state.shoppingList)) {
                 state.shoppingList[categoryId] = { items: { [itemName]: 1 }, amount: 1 };

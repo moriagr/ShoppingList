@@ -16,10 +16,16 @@
     font-size: 16px
 }
 
-.cardContainer{
+.cardContainer {
     display: grid;
     gap: 24px;
     justify-content: center;
     margin: 0 auto;
     justify-items: center;
+}
+
+@media (max-width: 50em) or (orientation: portrait) {
+    .cardContainer {
+        margin: unset;
+    }
 }

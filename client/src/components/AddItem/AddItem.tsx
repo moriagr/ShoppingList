@@ -6,30 +6,38 @@ import { addNewItem } from '../../store/shoppingSlice';
 import { inputStyle } from './addItem.style'
 import CustomButton from '../button/customButton';
 
+interface errorInterface {
+    productErr: string,
+    categoryErr: string
+}
+
 function AddItem() {
 
     const [productName, setProductName] = useState<string>("");
     const [category, setCategory] = useState<string>("");
-    const [error, setError] = useState<string>("");
+    const [error, setError] = useState<errorInterface>({ productErr: "", categoryErr: "" });
     const stateCategories = useAppSelector(state => state.categories);
     const { loading, categories } = stateCategories;
 
     const dispatch = useAppDispatch();
 
     const onSubmit = () => {
-        if (productName === "") {
-            setError("   לא בחרת שום מוצר עדיין, נסה שוב")
-            return;
-        }
-        if (category === "") {
-            setError("   לא בחרת שום קטגורייה עדיין, נסה שוב")
+        if (productName === "" || category === "") {
+            if (productName === "" && category === "") {
+                setError({ productErr: "   לא בחרת שום מוצר עדיין, נסה שוב", categoryErr: "   לא בחרת שום קטגורייה עדיין, נסה שוב" });
+            }
+            else if (productName === "")
+                setError({ productErr: "   לא בחרת שום מוצר עדיין, נסה שוב", categoryErr: "" });
+            else {
+                setError({ productErr: "", categoryErr: "   לא בחרת שום קטגורייה עדיין, נסה שוב" });
+            }
             return;
         }
         dispatch(addNewItem({ category: category, name: productName }))
     }
 
     function handleClose() {
-        setError("");
+        // setError();
     }
 
     return (
@@ -38,11 +46,13 @@ function AddItem() {
                 <TextField
                     label="שם המוצר"
                     value={productName}
+                    error={(error.productErr !== "")}
+                    helperText={(error.productErr !== "") ? error.productErr : " "}
                     required
                     sx={inputStyle}
                     onChange={(event) => {
                         setProductName(event.target.value)
-                        setError("")
+                        setError((prevValue) => { return { ...prevValue, productErr: "" } })
                     }}
                     fullWidth
                 />
@@ -50,28 +60,32 @@ function AddItem() {
             <span className="spaceBetween"></span>
             {categories?.length > 0 ?
                 <FormControl fullWidth required sx={inputStyle}>
-                    <InputLabel id="category-label">קטגוריה</InputLabel>
+                    {/* <InputLabel id="category-label">קטגוריה</InputLabel> */}
 
-                    <Select
-                        labelId="category-label"
+                    <TextField
+                        // id="category-label"
+                        select
+                        error={(error.categoryErr !== "")}
+                        helperText={(error.categoryErr !== "") ? error.categoryErr : " "}
+
                         required
                         label="קטגוריה"
                         value={category}
                         onChange={(e) => {
                             setCategory(e.target.value)
-                            setError("")
+                            setError((prevValue) => { return { ...prevValue, categoryErr: "" } })
                         }}
                     >
                         {categories.map((category) => (
                             <MenuItem value={category._id} key={category._id} >{category.name}</MenuItem>
                         ))}
-                    </Select>
+                    </TextField>
                 </FormControl>
                 : <div>{loading}</div>}
             <span className="spaceBetween"></span>
 
             <CustomButton onSubmit={onSubmit} title="הוסף" />
-            {error ?
+            {/* {error ?
                 <Snackbar
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                     open={(error !== "")}
@@ -83,7 +97,7 @@ function AddItem() {
                         {error}
                     </Alert>
                 </Snackbar>
-                : null}
+                : null} */}
         </div>
     );
 }
