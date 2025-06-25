@@ -9,6 +9,7 @@ const initialState: initialStateShoppingType = {
     shoppingList,
     loading: false,
     error: "",
+    totalItems: 0,
 }
 
 const shoppingSlice = createSlice({
@@ -30,6 +31,7 @@ const shoppingSlice = createSlice({
                 }
                 state.shoppingList[categoryId].amount = state.shoppingList[categoryId].amount + 1;
             }
+            state.totalItems += 1;
         },
         clearList: (state) => {
             state.shoppingList = {};

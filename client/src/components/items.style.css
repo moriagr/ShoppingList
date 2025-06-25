@@ -1,34 +1,25 @@
-.AddItem {
-    width: 80%;
+.totalItemsContainer {
+    display: inline-block;
+    background-color: rgb(243, 244, 246);
+    padding: 8px 16px;
+    width: fit-content;
+    border-radius: 20px;
     margin: auto;
-    display: flex;
-    flex-direction: row;
+    border: 1px solid rgb(229, 231, 235);
+    margin-bottom: 3vh;
+}
+
+.totalItems {
+    color: #374151;
+    width: auto;
+    font-weight: 500;
+    font-size: 16px
+}
+
+.cardContainer{
+    display: grid;
+    gap: 24px;
     justify-content: center;
-    align-items: center;
-}
-
-.name {
-    width: 30%;
-}
-
-.spaceBetween{
-    margin-left: 2vh;
-}
-
-.formStyle {
-    display: flex;
-    flex-direction: row;
-}
-
-@media (max-width: 50em) or (orientation: portrait){
-    .spaceBetween {
-        margin: 2vh 0;
-    }
-
-    .AddItem {
-        width: 60%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+    margin: 0 auto;
+    justify-items: center;
 }

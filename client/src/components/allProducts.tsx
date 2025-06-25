@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import Card from './card/Card';
-// import './items.style.css'
 import './card/card.style.css';
 
 import { RootState } from '../store';
@@ -8,19 +7,17 @@ import { RootState } from '../store';
 function AllProducts() {
     const stateCategories = useSelector((state: RootState) => state.categories);
     const { loading, categories } = stateCategories;
-    const stateShoppingList = useSelector((state: RootState) => state.shopping);
-    const { shoppingList } = stateShoppingList;
+    const shoppingList = useSelector((state: RootState) => state.shopping.shoppingList);
 
     return (
         <>
             <h2>יש לאסוף מוצרים אלו במחלקות המתאימות:</h2>
+
             {loading ?
                 <div>טעינה</div> :
-                categories?.length > 0 ?
-                    <div style={{
-                        display: 'grid',
+                categories?.length > 0 && Object.keys(shoppingList)?.length > 0 ?
+                    <div className="cardContainer" style={{
                         gridTemplateColumns: window.innerWidth >= 1024 ? 'repeat(3, 1fr)' : window.innerWidth >= 768 ? 'repeat(2, 1fr)' : '1fr',
-                        gap: '24px'
                     }}>
                         {categories.map((category, index) => {
                             if (category._id in shoppingList)

@@ -1,12 +1,18 @@
+import { useSelector } from 'react-redux';
 import './items.style.css'
+import { RootState } from '../store';
 
 function TotalItems() {
-  const itemsNumber = 0;
-  return (
-    <div className="TotalItems">
-      סך הכל: {itemsNumber} מוצרים
-    </div>
-  );
+    const totalItems = useSelector((state: RootState) => state.shopping.totalItems);
+
+    return (
+        <div className="totalItemsContainer">
+            <span className="totalItems">
+                סך הכל: {totalItems} מוצרים
+            </span>
+        </div>
+
+    );
 }
 
 export default TotalItems;

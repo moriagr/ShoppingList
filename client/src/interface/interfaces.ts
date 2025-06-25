@@ -19,6 +19,7 @@ export interface initialStateShoppingType {
     shoppingList: ShoppingListInterface;
     loading: boolean;
     error: null | string;
+    totalItems: 0;
 }
 
 export interface initialStateCategoriesType {
