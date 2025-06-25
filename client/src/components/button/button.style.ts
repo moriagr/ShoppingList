@@ -6,6 +6,7 @@ export const buttonStyle: CSSProperties = {
     padding: '12px 30px',
     borderRadius: '25px',
     fontWeight: 600,
+    maxWidth: "25vw",
     textTransform: 'none',
     minWidth: "150px",
     width: '40%',

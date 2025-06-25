@@ -11,34 +11,35 @@ interface SnackBarMessage {
     severity: AlertColor;
 }
 
-function AlertView() {
-    const shoppingList = useSelector((state: RootState) => state.shopping);
-    const categories = useSelector((state: RootState) => state.categories);
-    const shoppingErr = shoppingList.error;
-    const categoriesErr = categories.error;
-    const shoppingSuccess = shoppingList.success;
-    const dispatch = useDispatch();
+const originalValue: SnackBarMessage = {
+    open: false,
+    message: '',
+    severity: 'info'
+}
 
-    const originalValue: SnackBarMessage = {
-        open: false,
-        message: '',
-        severity: 'info'
-    }
+function AlertView() {
+    const dispatch = useDispatch();
+    const { error: shoppingErr, success: shoppingSuccess } = useSelector((state: RootState) => state.shopping);
+    const { error: categoriesErr } = useSelector((state: RootState) => state.categories);
+
     const [message, setMessage] = useState<SnackBarMessage>(originalValue);
 
     const showSnackbar = (message: string, severity: AlertColor) => {
-        setMessage({
-            open: true,
-            message,
-            severity
-        });
+        setMessage({ open: true, message, severity });
     };
 
     useEffect(() => {
         if (shoppingErr) showSnackbar(shoppingErr, "error");
+    }, [shoppingErr]);
+
+    useEffect(() => {
         if (categoriesErr) showSnackbar(categoriesErr, "error");
+    }, [categoriesErr]);
+
+    useEffect(() => {
         if (shoppingSuccess) showSnackbar(shoppingSuccess, "success");
-    }, [shoppingErr, categoriesErr, shoppingSuccess])
+    }, [shoppingSuccess]);
+
 
     function handleClose() {
         if (shoppingErr) dispatch(updateErrorShopping());
@@ -58,7 +59,8 @@ function AlertView() {
                 sx={{ width: '100%' }}>
                 {message.message}
             </Alert>
-        </Snackbar>)
+        </Snackbar>
+    )
 }
 
 export default AlertView;

@@ -3,17 +3,25 @@
     margin: auto;
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
     align-items: flex-start;
 }
 
-.spaceBetween{
+.input {
+    max-width: 40vw;
+
+}
+
+.spaceBetween {
     margin-left: 2vh;
 }
 
-@media (max-width: 50em) or (orientation: portrait){
+@media (max-width: 50em) or (orientation: portrait) {
     .spaceBetween {
         margin: 2vh 0;
+    }
+
+    .input {
+        max-width: unset;
     }
 
     .AddItem {

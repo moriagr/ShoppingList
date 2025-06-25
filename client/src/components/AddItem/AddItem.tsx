@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormControl, MenuItem, Select, TextField, InputLabel, Alert, Snackbar, CircularProgress } from '@mui/material';
+import { FormControl, MenuItem, TextField, CircularProgress, Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import './AddItem.style.css'
 import { addNewItem } from '../../store/shoppingSlice';
@@ -38,7 +38,7 @@ function AddItem() {
 
     return (
         <div className="AddItem">
-            <FormControl fullWidth>
+            <FormControl className='input' fullWidth>
                 <TextField
                     label="שם המוצר"
                     value={productName}
@@ -74,7 +74,10 @@ function AddItem() {
                         ))}
                     </TextField>
                 </FormControl>
-                : <CircularProgress style={{ color: '#764ba2' }} />}
+                :
+                <Box sx={{ display: 'flex' }}>
+                    <CircularProgress style={{ color: '#764ba2' }} />
+                </Box>}
             <span className="spaceBetween"></span>
 
             <CustomButton onSubmit={onSubmit} title="הוסף" loading={false} />
