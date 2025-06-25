@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import Card from './card/Card';
 import './card/card.style.css';
-
 import { RootState } from '../store';
+import NoProductAdded from './noProductAdded/NoProductAdded';
 
 function AllProducts() {
     const stateCategories = useSelector((state: RootState) => state.categories);
@@ -26,11 +26,7 @@ function AllProducts() {
                                 return undefined;
                         })}
                     </div>
-                    : <div>
-                        <div>
-                            לא התווסף שום מוצר לעגלה, אנא הוסף מוצר
-                        </div>
-                    </div>}
+                    : <NoProductAdded />}
         </>
     );
 }

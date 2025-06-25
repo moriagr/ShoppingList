@@ -1,0 +1,20 @@
+.container {
+    text-align: center;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+
+.shoppingCartIcon {
+    width: 64px;
+    height: 64px;
+    color: #9ca3af;
+}
+
+.textNoProduct {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 8px;
+    margin: 0;
+}
