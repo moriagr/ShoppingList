@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import './styles.css'
 import { addNewItem } from '../../store/shoppingSlice';
 import { inputStyle } from './styles'
-import CustomButton from '../button/CustomButton';
+import CustomButton from '../Button/customButton';
 
 interface errorInterface {
     productErr: string,

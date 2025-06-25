@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { organizeItemsFromState } from '../../utils/organizeItems';
 import { saveShoppingContainer } from './button.style';
-import CustomButton from './CustomButton';
+import CustomButton from './customButton';
 import { updateError } from '../../store/shoppingSlice';
 
 function SaveShoppingListButton() {

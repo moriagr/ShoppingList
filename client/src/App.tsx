@@ -4,7 +4,7 @@ import AddItem from './components/AddItem';
 import AllProducts from './components/allProducts';
 import { fetchCategories } from './api/service';
 import { useAppDispatch } from './store/hooks';
-import SaveShoppingListButton from './components/button/saveShoppingList';
+import SaveShoppingListButton from './components/Button/saveShoppingList';
 import TotalItems from './components/totalItems';
 import AlertView from './components/AlertView';
 
