@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import './App.css';
-import AddItem from './components/AddItem';
+import AddItem from './components/AddItem/AddItem';
 import AllProducts from './components/allProducts';
 import { fetchCategories } from './api/service';
 import { useAppDispatch } from './store/hooks';
-import SaveShoppingListButton from './components/saveShoppingList';
+import SaveShoppingListButton from './components/button/saveShoppingList';
 
 
 function App() {

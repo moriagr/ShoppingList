@@ -7,17 +7,8 @@
     align-items: center;
 }
 
-.name {
-    width: 30%;
-}
-
 .spaceBetween{
     margin-left: 2vh;
-}
-
-.formStyle {
-    display: flex;
-    flex-direction: row;
 }
 
 @media (max-width: 50em) or (orientation: portrait){

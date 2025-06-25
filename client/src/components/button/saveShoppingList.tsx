@@ -1,10 +1,9 @@
-import { Button } from '@mui/joy';
-import { useAppDispatch } from '../store/hooks';
-import './items.style.css'
-import { saveShoppingList } from '../api/service';
+import { useAppDispatch } from '../../store/hooks';
+import { saveShoppingList } from '../../api/service';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { ItemInterface } from '../interface/itemInterface';
+import { RootState } from '../../store';
+import { ItemInterface } from '../../interface/itemInterface';
+import CustomButton from './customButton';
 
 function SaveShoppingListButton() {
     const dispatch = useAppDispatch();
@@ -21,7 +20,6 @@ function SaveShoppingListButton() {
                 console.log(currItem);
                 organizeItems.push(currItem);
             })
-            console.log("category: " + category);
         });
         return organizeItems;
     }
@@ -31,9 +29,8 @@ function SaveShoppingListButton() {
     }
 
     return (
-        <div className="SaveShoppingListButton">
-
-            <Button type="submit" onClick={onSubmit}>סיים הזמנה</Button>
+        <div style={{ width: "60%", margin: "2vh auto" }}>
+            <CustomButton onSubmit={onSubmit} title="סיים הזמנה" />
         </div>
     );
 }

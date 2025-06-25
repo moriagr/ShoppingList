@@ -1,7 +1,10 @@
 import { useSelector } from 'react-redux';
-import ItemList from './ItemList';
-import './items.style.css'
+import Card from './card/Card';
+// import './items.style.css'
+import './card/card.style.css';
+
 import { RootState } from '../store';
+
 function AllProducts() {
     const stateCategories = useSelector((state: RootState) => state.categories);
     const { loading, categories } = stateCategories;
@@ -10,15 +13,27 @@ function AllProducts() {
 
     return (
         <>
-            <h3>יש לאסוף מוצרים אלו במחלקות המתאימות</h3>
+            <h2>יש לאסוף מוצרים אלו במחלקות המתאימות:</h2>
             {loading ?
-                <div>loading</div> :
+                <div>טעינה</div> :
                 categories?.length > 0 ?
-                    categories.map((category, index) => {
-                        if (category._id in shoppingList)
-                            return <ItemList key={category._id} category={category} />
-                    }) :
-                    <div>no data</div>}
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: window.innerWidth >= 1024 ? 'repeat(3, 1fr)' : window.innerWidth >= 768 ? 'repeat(2, 1fr)' : '1fr',
+                        gap: '24px'
+                    }}>
+                        {categories.map((category, index) => {
+                            if (category._id in shoppingList)
+                                return <Card key={category._id} category={category} />
+                            else
+                                return undefined;
+                        })}
+                    </div>
+                    : <div>
+                        <div>
+                            לא התווסף שום מוצר לעגלה, אנא הוסף מוצר
+                        </div>
+                    </div>}
         </>
     );
 }
