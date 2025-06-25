@@ -8,7 +8,7 @@ function TotalItems() {
     return (
         <div className="totalItemsContainer">
             <span className="totalItems">
-                סך הכל: {totalItems} מוצרים
+                סך הכל: {totalItems} מוצרים בסל
             </span>
         </div>
 
