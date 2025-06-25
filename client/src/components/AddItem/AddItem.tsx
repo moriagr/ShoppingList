@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormControl, MenuItem, Select, TextField, InputLabel, Alert, Snackbar } from '@mui/material';
+import { FormControl, MenuItem, Select, TextField, InputLabel, Alert, Snackbar, CircularProgress } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import './AddItem.style.css'
 import { addNewItem } from '../../store/shoppingSlice';
@@ -36,10 +36,6 @@ function AddItem() {
         dispatch(addNewItem({ category: category, name: productName }))
     }
 
-    function handleClose() {
-        // setError();
-    }
-
     return (
         <div className="AddItem">
             <FormControl fullWidth>
@@ -58,12 +54,9 @@ function AddItem() {
                 />
             </FormControl>
             <span className="spaceBetween"></span>
-            {categories?.length > 0 ?
+            {!loading && categories?.length > 0 ?
                 <FormControl fullWidth required sx={inputStyle}>
-                    {/* <InputLabel id="category-label">קטגוריה</InputLabel> */}
-
                     <TextField
-                        // id="category-label"
                         select
                         error={(error.categoryErr !== "")}
                         helperText={(error.categoryErr !== "") ? error.categoryErr : " "}
@@ -81,23 +74,10 @@ function AddItem() {
                         ))}
                     </TextField>
                 </FormControl>
-                : <div>{loading}</div>}
+                : <CircularProgress style={{ color: '#764ba2' }} />}
             <span className="spaceBetween"></span>
 
-            <CustomButton onSubmit={onSubmit} title="הוסף" />
-            {/* {error ?
-                <Snackbar
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                    open={(error !== "")}
-                    onClose={handleClose}>
-                    <Alert onClose={handleClose}
-                        severity="error"
-                        variant="filled"
-                        sx={{ width: '100%' }}>
-                        {error}
-                    </Alert>
-                </Snackbar>
-                : null} */}
+            <CustomButton onSubmit={onSubmit} title="הוסף" loading={false} />
         </div>
     );
 }

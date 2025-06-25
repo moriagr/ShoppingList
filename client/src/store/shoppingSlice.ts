@@ -9,6 +9,7 @@ const initialState: initialStateShoppingType = {
     shoppingList,
     loading: false,
     error: "",
+    success: "",
     totalItems: 0,
 }
 
@@ -43,7 +44,13 @@ const shoppingSlice = createSlice({
             if (state.shoppingList[action.payload.category].amount <= 0) {
                 delete state.shoppingList[action.payload.category]
             } else delete state.shoppingList[action.payload.category].items[action.payload.name];
-        }
+        },
+        updateError: (state) => {
+            state.error = null;
+        },
+        updateSuccess: (state) => {
+            state.success = null;
+        },
 
     },
     extraReducers: (builder) => {
@@ -54,18 +61,18 @@ const shoppingSlice = createSlice({
             })
             .addCase(saveShoppingList.fulfilled, (state, action) => {
                 state.loading = false;
-                // state.categories = action.payload;
+                state.success = "הרשימה נשמרה בהצלחה   ";
             })
             .addCase(saveShoppingList.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message ?? "Failed to fetch categories";
+                state.error = action.error.message ?? "לא ניתן לשמור את רשימת הקניות, נסה שוב מאוחר יותר   ";
             })
 
     }
 
 })
 
-export const { addNewItem, updateItem, clearList } = shoppingSlice.actions;
+export const { addNewItem, updateItem, clearList, updateError, updateSuccess } = shoppingSlice.actions;
 
 
 export default shoppingSlice.reducer;

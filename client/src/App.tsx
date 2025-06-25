@@ -6,6 +6,7 @@ import { fetchCategories } from './api/service';
 import { useAppDispatch } from './store/hooks';
 import SaveShoppingListButton from './components/button/saveShoppingList';
 import TotalItems from './components/totalItems';
+import AlertView from './components/AlertView/AlertView';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <AddItem />
       <AllProducts />
       <SaveShoppingListButton />
+      <AlertView />
     </div>
   );
 }

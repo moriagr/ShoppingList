@@ -3,10 +3,11 @@ import { buttonStyle } from "./button.style";
 
 interface buttonInterface {
     onSubmit: () => void;
-    title: string
+    title: string;
+    loading: boolean
 }
-function CustomButton({ onSubmit, title }: buttonInterface) {
-    return <Button type="submit" sx={buttonStyle} onClick={onSubmit}>{title}</Button>
+function CustomButton({ onSubmit, title, loading = false }: buttonInterface) {
+    return <Button loading={loading} type="submit" sx={buttonStyle} onClick={onSubmit}>{title}</Button>
 
 }
 

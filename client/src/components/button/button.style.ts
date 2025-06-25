@@ -20,3 +20,8 @@ export const buttonStyle: CSSProperties = {
 export const AddButton: CSSProperties = {
     margin: 'unset'
 }
+
+export const saveShoppingContainer: CSSProperties = {
+    width: "60%",
+    margin: "2vh auto 10vh"
+}

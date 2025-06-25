@@ -14,7 +14,11 @@ const initialState: initialStateCategoriesType = {
 const categoriesSlice = createSlice({
     name: 'categoriesList',
     initialState,
-    reducers: {},
+    reducers: {
+        updateError: (state) => {
+            state.error = null;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchCategories.pending, (state) => {
@@ -27,10 +31,12 @@ const categoriesSlice = createSlice({
             })
             .addCase(fetchCategories.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message ?? "Failed to fetch categories";
+                state.error = action.error.message ?? "קרתה תקלה בהבאת הקטגוריות מהשרת, אנא נסה שוב מאוחר יותר   ";
             })
 
     }
 })
+
+export const { updateError } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

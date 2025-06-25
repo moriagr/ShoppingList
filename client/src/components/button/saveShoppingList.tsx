@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ItemInterface } from '../../interface/itemInterface';
 import CustomButton from './customButton';
+import { saveShoppingContainer } from './button.style';
 
 function SaveShoppingListButton() {
     const dispatch = useAppDispatch();
@@ -29,8 +30,8 @@ function SaveShoppingListButton() {
     }
 
     return (
-        <div style={{ width: "60%", margin: "2vh auto" }}>
-            <CustomButton onSubmit={onSubmit} title="סיים הזמנה" />
+        <div style={saveShoppingContainer}>
+            <CustomButton onSubmit={onSubmit} title="סיים הזמנה" loading ={stateShoppingList.loading}/>
         </div>
     );
 }
