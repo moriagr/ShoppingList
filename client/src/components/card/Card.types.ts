@@ -5,7 +5,7 @@ export interface CardItemsProps {
 
 export interface CardProps {
   category: {
-    _id: string;
+    id: string;
     name: string;
   };
 }

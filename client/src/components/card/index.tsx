@@ -10,8 +10,8 @@ function Card({ category }: CardProps) {
 
     return (
         <div className="Card">
-            <CardTitle title={`${category.name} - ${shoppingList[category._id].amount} מוצרים`} />
-            <CardItems itemsInCategory={shoppingList[category._id].items} category={category._id} />
+            <CardTitle title={`${category.name} - ${shoppingList[category.id].amount} מוצרים`} />
+            <CardItems itemsInCategory={shoppingList[category.id].items} category={category.id} />
         </div>
     );
 }

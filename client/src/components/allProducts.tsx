@@ -37,8 +37,8 @@ function AllProducts() {
                 categories?.length > 0 && Object.keys(shoppingList)?.length > 0 ?
                     <div className="cardContainer" style={gridStyle}>
                         {categories.map((category) => {
-                            if (category._id in shoppingList)
-                                return <Card key={category._id} category={category} />
+                            if (category.id in shoppingList)
+                                return <Card key={category.id} category={category} />
                             else
                                 return undefined;
                         })}

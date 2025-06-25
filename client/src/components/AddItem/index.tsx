@@ -72,7 +72,7 @@ function AddItem() {
                         }}
                     >
                         {categories.map((category) => (
-                            <MenuItem value={category._id} key={category._id} >{category.name}</MenuItem>
+                            <MenuItem value={category.id} key={category.id} >{category.name}</MenuItem>
                         ))}
                     </TextField>
                 </FormControl>

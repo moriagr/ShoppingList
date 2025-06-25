@@ -9,7 +9,7 @@ Create multiple lists and categorize items.
 ## Tech Stack
 - **Frontend**: React + TypeScript + Material UI
 - **State Management**: Redux Toolkit
-- **Backend**: Node.js + TypeScript + Express
+- **Backend**: Node.js + TypeScript + Express + prisma
 - **Database**: MongoDB Atlas
 - **Deployment**: Vercel (Client), Render (Server)
 
@@ -46,7 +46,7 @@ npm install
 Create `.env` file in `/server` directory with: 
 
 ```pgsql
-PORT= 
+PORT= 8080
 MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/shopping_list?retryWrites=true&w=majority
 ```
 
