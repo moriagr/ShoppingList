@@ -45,7 +45,6 @@ const CardItems = ({ itemsInCategory, category }: itemsInterface) => {
                         </button>
                     </div>
                 ))}
-                {/* {visibleItems.length} */}
             </div>
 
             {hasMoreItems && (
