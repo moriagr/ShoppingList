@@ -1,15 +1,36 @@
 # Shopping List App
 
-Organize your shopping with custom categories, real-time syncing, and a clean interface designed for quick item management. 
+The app organizes your shopping with custom categories, real-time syncing, and a clean interface designed for quick item management. 
 
-Create multiple lists and categorize items.
+---
+
+## Additional Features
+
+### 1. Error Handling & Edge Cases
+
+Comprehensive error handling implemented across the application,
+edge case scenarios properly managed to ensure stable user experience. 
+For example: design for empty shopping list, missing categories, etc. 
+
+
+### 2. Product Deletion
+
+Users can now remove products from their lists.
+
+### 3. Enhanced Category View
+
+Category cards can now be expand and collapse when they contain more than 3 items.
+
+### 4. Notification System
+
+Notification system alerts users of database save errors, general application errors and success in saving the data.
 
 ---
 
 ## Tech Stack
 - **Frontend**: React + TypeScript + Material UI
 - **State Management**: Redux Toolkit
-- **Backend**: Node.js + TypeScript + Express + prisma
+- **Backend**: Node.js + TypeScript + Express + prisma (ORM)
 - **Database**: MongoDB Atlas
 - **Deployment**: Vercel (Client), Render (Server)
 
@@ -18,23 +39,23 @@ Create multiple lists and categorize items.
 ## Live Demo
 
 - **Client**: [https://shopping-list-tau-eight.vercel.app/](https://shopping-list-tau-eight.vercel.app/)
-- **Server**: [https://shoppinglist-server-p943.onrender.com](https://shoppinglist-server-p943.onrender.com)
+- **Server**: hosted on [https://shoppinglist-server-p943.onrender.com](https://shoppinglist-server-p943.onrender.com) (To see the categories run https://shoppinglist-server-p943.onrender.com/api/categories)
 
 ---
 
-## How to run the project locally
+## How to Run Locally
 
-### Before installing make sure you have those thing installed on your computer:
+### 1. Install the following on your computer::
 - Git
 - Node (latest version)
 
-### 1. Clone the repository
+### 2. Clone the repository
 ```bash
 git clone https://github.com/moriagr/ShoppingList.git
-cd shopping-list
+cd ShoppingList
 ```
 
-### 2. Setup Server
+### 3. Setup Server
 
 ```bash
 cd server
@@ -84,23 +105,3 @@ npm start
 
 Client runs at `http://localhost:3000` by default (Check your code).
 
----
-
-## New Features
-
-### 1. Error Handling & Edge Cases
-
-Comprehensive error handling implemented across the application,
-Edge case scenarios properly managed to ensure stable user experience.
-
-### 2. Product Management
-
-Product Deletion: Users can now remove products from their lists.
-
-### 3. Enhanced Category View
-
-Expandable Categories Category cards can now be expanded when they contain more than 3 items.
-
-### 4. Notification System
-
-Notification system alerts users of database save errors, general application errors and success in saving the data.
