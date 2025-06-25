@@ -15,8 +15,8 @@ function Card({ category }: CardProps) {
 
     return (
         <div className="Card">
-            <CardHeader title={`${category.name} - ${shoppingList[category._id].amount} מוצרים`}/>
-            <CardItems itemsInCategory={shoppingList[category._id].items} />
+            <CardHeader title={`${category.name} - ${shoppingList[category._id].amount} מוצרים`} />
+            <CardItems itemsInCategory={shoppingList[category._id].items} category={category._id} />
 
         </div>
     );

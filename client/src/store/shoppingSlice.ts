@@ -35,11 +35,15 @@ const shoppingSlice = createSlice({
         },
         clearList: (state) => {
             state.shoppingList = {};
+        },
+        updateItem: (state, action: PayloadAction<ShoppingItem>) => {
+            const currentItem = state.shoppingList[action.payload.category].items[action.payload.name];
+            state.totalItems -= currentItem;
+            state.shoppingList[action.payload.category].amount -= currentItem;
+            if (state.shoppingList[action.payload.category].amount <= 0) {
+                delete state.shoppingList[action.payload.category]
+            } else delete state.shoppingList[action.payload.category].items[action.payload.name];
         }
-        // updateItem: (state, action: PayloadAction<ShoppingItem>) => {
-        //     const item = action.payload;
-        //     state.shoppingList.push(action.payload);
-        // }
 
     },
     extraReducers: (builder) => {
@@ -61,7 +65,7 @@ const shoppingSlice = createSlice({
 
 })
 
-export const { addNewItem /*, updateItem*/, clearList } = shoppingSlice.actions;
+export const { addNewItem, updateItem, clearList } = shoppingSlice.actions;
 
 
 export default shoppingSlice.reducer;

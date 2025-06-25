@@ -3,25 +3,25 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
 import './card.style.css';
+import { useDispatch } from 'react-redux';
+import { updateItem } from '../../store/shoppingSlice';
 
 interface itemsInterface {
-    itemsInCategory: { [name: string]: number }
+    itemsInCategory: { [name: string]: number };
+    category: string
 }
 
-const CardItems = ({ itemsInCategory }: itemsInterface) => {
+const CardItems = ({ itemsInCategory, category }: itemsInterface) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const maxVisibleItems = 5;
+    const maxVisibleItems = 3;
     const visibleItems = isExpanded ? Object.keys(itemsInCategory) : Object.keys(itemsInCategory).slice(0, maxVisibleItems);
     const hasMoreItems = Object.keys(itemsInCategory).length > maxVisibleItems;
+    const dispatch = useDispatch();
 
-
-    // const deleteItem = (itemId) => {
-    //     onUpdate(card.id, {
-    //         ...card,
-    //         items: card.items.filter(item => item.id !== itemId)
-    //     });
-    // };
+    const deleteItem = (itemId: string) => {
+        dispatch(updateItem({ name: itemId, category }))
+    };
 
     return (
         <div>
@@ -40,26 +40,12 @@ const CardItems = ({ itemsInCategory }: itemsInterface) => {
                             )}
 
                         </span>
-                        {/* <button
-                            className="delete-btn"
-                            // onClick={() => deleteItem(item.id)}
-                            style={{
-                                opacity: 1,
-                                color: '#f87171',
-                                backgroundColor: 'transparent',
-                                border: 'none',
-                                cursor: 'pointer',
-                                padding: '4px',
-                                borderRadius: '4px',
-                                transition: 'all 0.2s ease'
-                            }}
-                        // onMouseEnter={(e) => e.target.opacity =1}
-                        // onMouseLeave={(e) => e.target.style.color = '#f87171'}
-                        >
+                        <button className="delete-btn" onClick={() => deleteItem(item)}                        >
                             <CloseIcon className="w-4 h-4" />
-                        </button> */}
+                        </button>
                     </div>
                 ))}
+                {/* {visibleItems.length} */}
             </div>
 
             {hasMoreItems && (
