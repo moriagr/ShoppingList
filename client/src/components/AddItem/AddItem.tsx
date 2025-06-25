@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormControl, MenuItem, Select, TextField, InputLabel } from '@mui/material';
+import { FormControl, MenuItem, Select, TextField, InputLabel, Alert, Snackbar } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import './AddItem.style.css'
 import { addNewItem } from '../../store/shoppingSlice';
@@ -10,15 +10,26 @@ function AddItem() {
 
     const [productName, setProductName] = useState<string>("");
     const [category, setCategory] = useState<string>("");
+    const [error, setError] = useState<string>("");
     const stateCategories = useAppSelector(state => state.categories);
     const { loading, categories } = stateCategories;
 
     const dispatch = useAppDispatch();
 
     const onSubmit = () => {
-        console.log(productName);
-        console.log(typeof category);
+        if (productName === "") {
+            setError("   לא בחרת שום מוצר עדיין, נסה שוב")
+            return;
+        }
+        if (category === "") {
+            setError("   לא בחרת שום קטגורייה עדיין, נסה שוב")
+            return;
+        }
         dispatch(addNewItem({ category: category, name: productName }))
+    }
+
+    function handleClose() {
+        setError("");
     }
 
     return (
@@ -27,14 +38,18 @@ function AddItem() {
                 <TextField
                     label="שם המוצר"
                     value={productName}
+                    required
                     sx={inputStyle}
-                    onChange={(event) => setProductName(event.target.value)}
+                    onChange={(event) => {
+                        setProductName(event.target.value)
+                        setError("")
+                    }}
                     fullWidth
                 />
             </FormControl>
             <span className="spaceBetween"></span>
             {categories?.length > 0 ?
-                <FormControl fullWidth sx={inputStyle}>
+                <FormControl fullWidth required sx={inputStyle}>
                     <InputLabel id="category-label">קטגוריה</InputLabel>
 
                     <Select
@@ -42,7 +57,10 @@ function AddItem() {
                         required
                         label="קטגוריה"
                         value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={(e) => {
+                            setCategory(e.target.value)
+                            setError("")
+                        }}
                     >
                         {categories.map((category) => (
                             <MenuItem value={category._id} key={category._id} >{category.name}</MenuItem>
@@ -53,6 +71,19 @@ function AddItem() {
             <span className="spaceBetween"></span>
 
             <CustomButton onSubmit={onSubmit} title="הוסף" />
+            {error ?
+                <Snackbar
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    open={(error !== "")}
+                    onClose={handleClose}>
+                    <Alert onClose={handleClose}
+                        severity="error"
+                        variant="filled"
+                        sx={{ width: '100%' }}>
+                        {error}
+                    </Alert>
+                </Snackbar>
+                : null}
         </div>
     );
 }
